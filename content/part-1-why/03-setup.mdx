@@ -34,7 +34,8 @@ OpenAI의 CLI 에이전트. Claude Code와 유사한 경험을 제공합니다.
 |---|---|
 | **AI Pro IDE 확장** | JetBrains / VSCode / Eclipse 플러그인 — Chat·Agent·Tools·Editor 통합 |
 | **AI Pro CLI** | 터미널 도구 (gemini-cli 기반) |
-| **Rules** | 행동 지침 (Cursor Rules와 동일 개념) — Personal/Project |
+| **`AGENTS.md`** ⭐ | **프로젝트 1차 컨텍스트 파일** — Claude Code의 CLAUDE.md에 가장 가까운 역할. `/init`으로 자동 생성 |
+| **Rules** | 행동 지침 (Cursor Rules와 동일 개념) — Personal/Project, AGENTS.md를 보완 |
 | **Skills** | 작업별 지침 (Claude의 Skills와 동일 개념) — `/skill-name` 호출 또는 자동 판단 |
 | **Pre-set Prompt** | 자주 쓰는 프롬프트 5개까지 저장 |
 
@@ -42,6 +43,7 @@ OpenAI의 CLI 에이전트. Claude Code와 유사한 경험을 제공합니다.
 
 | 항목 | 경로 |
 |---|---|
+| **AGENTS.md** ⭐ | `./AGENTS.md` (프로젝트 루트, `/init`으로 생성) |
 | Personal Rules | `~/.aipro/rules/*.md` |
 | Project Rules | `.aipro/rules/*.md` |
 | Personal Skills | `~/.aipro/skills/<skill-name>/SKILL.md` |
@@ -62,7 +64,7 @@ OpenAI의 CLI 에이전트. Claude Code와 유사한 경험을 제공합니다.
 - [ ] 에이전트 CLI 또는 IDE 확장 실행 가능
 - [ ] 로그인·인증 완료
 - [ ] 임의의 폴더에서 "Hello, World" 수준의 간단한 요청 성공
-- [ ] **Claude Code**: `CLAUDE.md` 파일 인식 / **AI Pro**: `.aipro/rules/test.md` 인식 / **Codex**: `AGENTS.md` 인식
+- [ ] **Claude Code**: `/init`으로 `CLAUDE.md` 자동 생성 / **AI Pro**: `/init`으로 `AGENTS.md` 자동 생성 / **Codex**: `AGENTS.md` 인식
 
 ## 준비되셨다면
 
