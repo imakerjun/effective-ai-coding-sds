@@ -2,6 +2,15 @@
 
 > 길게 일하는 법
 
+## 📚 이 장의 근거
+
+- **Anthropic — [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)** — "attention budget은 유한하며, 컨텍스트가 꽉 찰수록 중요한 정보가 묻힌다"는 경제학의 1차 근거. Compaction·Pruning 권고.
+- **Anthropic — [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)** — 긴 작업에서 sub-agent로 **컨텍스트를 격리**해 부모 윈도우를 보호하는 패턴.
+- **Birgitta Böckeler — [Harness engineering for coding agent users](https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html)** — 3-component 중 **Garbage Collection** 축: 오래된 토큰을 언제·어떻게 버릴 것인가.
+- **HumanLayer — [Skill Issue](https://www.humanlayer.dev/blog/skill-issue-harness-engineering-for-coding-agents)** — Sub-agent를 **context firewall** 로 활용해 요약본만 주고받는 실무 패턴.
+
+공통 원리: **"토큰 절약"은 요약 기술이 아니라 아키텍처 문제다.**
+
 ## 왜 토큰이 문제인가
 
 AI 에이전트를 써보면 어느 순간 이상한 일이 생깁니다.
