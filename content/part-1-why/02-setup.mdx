@@ -53,25 +53,29 @@
 
 **저장소**: [imakerjun/agentic-coding-sample](https://github.com/imakerjun/agentic-coding-sample)
 
+**저장소**: [imakerjun/autoresearch-harness-steps](https://github.com/imakerjun/autoresearch-harness-steps) — Andrej Karpathy의 [autoresearch](https://github.com/karpathy/autoresearch) fork에 강의 실습 자료를 추가한 형태입니다.
+
 ```bash
-git clone https://github.com/imakerjun/agentic-coding-sample.git
-cd agentic-coding-sample
+git clone https://github.com/imakerjun/autoresearch-harness-steps.git
+cd autoresearch-harness-steps
 ```
 
 5가지 토픽에 1:1 매핑되는 5단계가 들어 있습니다:
 
 | Step | 토픽 | 디렉터리 |
 |---|---|---|
-| 1 | Context | [`steps/step-1-context/`](https://github.com/imakerjun/agentic-coding-sample/tree/main/steps/step-1-context) |
-| 2 | Plan | [`steps/step-2-plan/`](https://github.com/imakerjun/agentic-coding-sample/tree/main/steps/step-2-plan) |
-| 3 | Token | [`steps/step-3-token/`](https://github.com/imakerjun/agentic-coding-sample/tree/main/steps/step-3-token) |
-| 4 | Quality | [`steps/step-4-quality/`](https://github.com/imakerjun/agentic-coding-sample/tree/main/steps/step-4-quality) |
-| 5 | Multi-Agent | [`steps/step-5-multi-agent/`](https://github.com/imakerjun/agentic-coding-sample/tree/main/steps/step-5-multi-agent) |
+| 1 | Context | [`harness-steps/step-1-context/`](https://github.com/imakerjun/autoresearch-harness-steps/tree/master/harness-steps/step-1-context) |
+| 2 | Plan | [`harness-steps/step-2-plan/`](https://github.com/imakerjun/autoresearch-harness-steps/tree/master/harness-steps/step-2-plan) |
+| 3 | Token | [`harness-steps/step-3-token/`](https://github.com/imakerjun/autoresearch-harness-steps/tree/master/harness-steps/step-3-token) |
+| 4 | Quality | [`harness-steps/step-4-quality/`](https://github.com/imakerjun/autoresearch-harness-steps/tree/master/harness-steps/step-4-quality) |
+| 5 | Multi-Agent | [`harness-steps/step-5-multi-agent/`](https://github.com/imakerjun/autoresearch-harness-steps/tree/master/harness-steps/step-5-multi-agent) |
 
-**왜 이 저장소를 쓰는가**:
-- 각 단계가 **독립 실행 가능** — 자기 자리에서 시작 가능
-- **외부 의존성 0** — Node 18+만 있으면 됨 (`node --test` 빌트인)
-- **start/ + solution/** 구조 — 막히면 비교용
+**왜 빈 스캐폴드가 아니라 실제 오픈소스인가**:
+- **실제 코드베이스**에는 컨벤션·역사·제약이 있어, AI 작업의 진짜 어려움을 체감할 수 있음
+- Karpathy 본인 프로젝트라 강의 spine과 자연 연결 (부록 F Autoresearch)
+- 약 1,000줄 코드 — 한 번에 다 읽을 수 있는 크기
+- **`program.md`** — Karpathy가 직접 쓴 *컨텍스트 파일의 교과서적 예시* 가 이미 들어 있음
+- **GPU 없이도** 5단계 모두 진행 가능 (코드 *읽기·수정·테스트* 위주)
 - `CLAUDE.md` + `AGENTS.md` 모두 포함 — Claude Code · AI Pro 모두 지원
 
 ## 준비되셨다면
