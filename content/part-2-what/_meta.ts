@@ -1,4 +1,8 @@
 export default {
+  '-- concept': {
+    type: 'separator',
+    title: '📘 이론',
+  },
   'harness-engineering': '2.0 Harness Engineering',
   'context-engineering': '2.1 Context Engineering',
   'plan-based-execution': '2.2 Plan-based Execution',
