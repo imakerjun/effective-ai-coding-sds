@@ -9,7 +9,7 @@
 | **제공사** | Anthropic | OpenAI | 삼성SDS 사내 |
 | **기반 기술** | (자체) | (자체) | gemini-cli + Cursor 개념 + Claude Skills 개념 |
 | **인터페이스** | CLI 중심 | CLI 중심 | **IDE 확장 (JetBrains/VSC/Eclipse) + CLI** |
-| **컨텍스트 파일 (1차)** | `CLAUDE.md` | `AGENTS.md` | **`AGENTS.md`** (PDF 가이드 명시, `/init`으로 생성) |
+| **컨텍스트 파일 (1차)** | `CLAUDE.md` | `AGENTS.md` | **`AGENTS.md`** (`/init`으로 생성) |
 | **컨텍스트 파일 (보조)** | `CLAUDE.local.md`, `~/.claude/CLAUDE.md` | — | `Rules` (`.aipro/rules/*.md`, 행동 지침용) |
 | **컨텍스트 제한** | 사실상 무제한 | 사실상 무제한 | **Rules 합산 10,000자** (초과분 잘림) |
 | **Plan / 사전 합의** | Plan Mode | 부분적 | **Chat ↔ Agent 모드 + Pre-set Prompt 5개** |
@@ -22,7 +22,7 @@
 | **Ignore** | `.gitignore` | `.gitignore` | `.aiproignore`, `.geminiignore` |
 | **모델 선택** | Claude family | OpenAI family | **Qwen3-Coder-128K, GPT-OSS-128K, GLM-4.7-128K** 등 |
 
-> ⚠️ 이 표는 2026년 4월 기준입니다. 도구 발전 속도가 빠르므로 각 공식 문서로 검증하세요. AI Pro 정보는 SDS 사내 PDF 가이드(Rules / Skills / CLI / Chat / Editor) 기준입니다.
+> ⚠️ 이 표는 2026년 4월 기준입니다. 도구 발전 속도가 빠르므로 각 공식 문서로 검증하세요. AI Pro 정보는 사내 공식 가이드 기준입니다.
 
 ## 어떤 걸 골라야 할까
 
@@ -42,7 +42,7 @@
 
 - 삼성SDS 사내 정책상 외부 도구 사용 제한
 - 사내 인프라·데이터 접근이 필요한 작업
-- **JetBrains/VSCode/Eclipse 셋 중 어디서든 동일 경험**을 원하는 경우 (PDF 가이드에 세 IDE 모두 명시)
+- **JetBrains/VSCode/Eclipse 셋 중 어디서든 동일 경험**을 원하는 경우
 
 **AI Pro만의 장점**:
 - IDE에 깊게 통합된 컨텍스트 메뉴 (Code Generation / Refactoring / Comment / Test / Explanation)
