@@ -1,45 +1,23 @@
-# 1.3 실습 환경 세팅
+# 1.2 실습 환경 세팅
 
-이 강의의 미니 실습을 따라가려면 아래 중 **최소 1개**의 환경이 필요합니다. 전부 설치할 필요는 없습니다.
+이 강의의 미니 실습은 AI 코드 에이전트 환경 1개만 있으면 됩니다.
 
-## 선택지
+## 삼성SDS 수강생 — AI Pro
 
-### 옵션 1: Claude Code (권장 — 강의 데모 기준)
+이 강의는 삼성SDS 사내 도구인 **AI Pro**를 기준으로 설계됐습니다.
 
-Anthropic 공식 CLI. 이 강의의 데모·스크린샷·실습은 기본적으로 Claude Code 기준입니다.
-
-**설치**:
-```bash
-npm install -g @anthropic-ai/claude-code
-claude login
-```
-
-**필요 요건**:
-- Node.js 18+
-- Claude 계정 (Pro/Team/Enterprise 중 하나)
-
-### 옵션 2: Codex (OpenAI)
-
-OpenAI의 CLI 에이전트. Claude Code와 유사한 경험을 제공합니다.
-
-> TODO: 최신 설치 가이드 링크 추가
-
-### 옵션 3: AI Pro (삼성SDS 사내) ⭐
-
-삼성SDS 내부 환경에서 제공되는 AI 개발 도구입니다. **이 강의의 SDS 수강생에게는 기본 도구**입니다. 강의 데모는 Claude Code 화면이지만, **AI Pro에서도 동일한 원칙·기능을 그대로 적용할 수 있도록** 각 챕터에 매핑을 제공합니다.
-
-**구성 요소** (PDF 가이드 기준)
+### 구성 요소 (PDF 가이드 기준)
 
 | 구성 | 설명 |
 |---|---|
 | **AI Pro IDE 확장** | JetBrains / VSCode / Eclipse 플러그인 — Chat·Agent·Tools·Editor 통합 |
 | **AI Pro CLI** | 터미널 도구 (gemini-cli 기반) |
-| **`AGENTS.md`** ⭐ | **프로젝트 1차 컨텍스트 파일** — Claude Code의 CLAUDE.md에 가장 가까운 역할. `/init`으로 자동 생성 |
+| **`AGENTS.md`** ⭐ | **프로젝트 1차 컨텍스트 파일** — `/init`으로 자동 생성 |
 | **Rules** | 행동 지침 (Cursor Rules와 동일 개념) — Personal/Project, AGENTS.md를 보완 |
 | **Skills** | 작업별 지침 (Claude의 Skills와 동일 개념) — `/skill-name` 호출 또는 자동 판단 |
 | **Pre-set Prompt** | 자주 쓰는 프롬프트 5개까지 저장 |
 
-**핵심 위치**
+### 핵심 위치
 
 | 항목 | 경로 |
 |---|---|
@@ -53,9 +31,21 @@ OpenAI의 CLI 에이전트. Claude Code와 유사한 경험을 제공합니다.
 
 **모델 선택**: Qwen3-Coder-128K, GPT-OSS-128K, GLM-4.7-128K 등 (Chat/Agent 우측 상단 드롭다운)
 
-**제한**: Rules는 Project + Personal 합쳐 최대 **10,000자**까지 LLM에 전달됩니다. 초과분은 잘립니다 — Part 3.1의 "100줄 넘기지 마세요" 권고가 AI Pro에서는 사실상 강제입니다.
+> ⚠️ **Rules 합산 10,000자 제한**: Project Rules + Personal Rules는 합쳐 10,000자까지만 LLM에 전달됩니다 (PDF 가이드). 핵심 규칙을 Project Rules 앞쪽에 두세요.
 
-> 이 강의의 각 챕터에는 **"AI Pro에서는?"** 콜아웃이 들어 있습니다. Claude Code 화면을 보시면서 동시에 AI Pro에서 어떻게 하는지 매핑을 확인하시면 됩니다.
+## 강사가 화면으로 보여주는 도구
+
+저는 강의에서 **Claude Code**(Anthropic)로 시연합니다. 화면 흐름을 따라오기 쉽도록 매 챕터마다 **"AI Pro에서는 이렇게 합니다"** 콜아웃을 함께 제공합니다.
+
+## 다른 도구를 쓰시는 분 — 공식 설치 가이드
+
+| 도구 | 공식 설치 가이드 |
+|---|---|
+| **Claude Code** (Anthropic) | https://docs.claude.com/en/docs/claude-code |
+| **Codex** (OpenAI) | https://openai.com/codex |
+| **Cursor** | https://docs.cursor.com |
+
+원칙은 도구에 독립적이라, 어떤 도구로든 강의를 따라가실 수 있습니다.
 
 ## 실습 저장소 (공식 안내) ⭐
 
@@ -68,9 +58,9 @@ git clone https://github.com/imakerjun/agentic-coding-sample.git
 cd agentic-coding-sample
 ```
 
-5가지 축에 1:1 매핑되는 5단계가 들어 있습니다:
+5가지 토픽에 1:1 매핑되는 5단계가 들어 있습니다:
 
-| Step | 축 | 디렉터리 |
+| Step | 토픽 | 디렉터리 |
 |---|---|---|
 | 1 | Context | [`steps/step-1-context/`](https://github.com/imakerjun/agentic-coding-sample/tree/main/steps/step-1-context) |
 | 2 | Plan | [`steps/step-2-plan/`](https://github.com/imakerjun/agentic-coding-sample/tree/main/steps/step-2-plan) |
@@ -84,17 +74,6 @@ cd agentic-coding-sample
 - **start/ + solution/** 구조 — 막히면 비교용
 - `CLAUDE.md` + `AGENTS.md` 모두 포함 — Claude Code · AI Pro 모두 지원
 
-자기 프로젝트에서 실습이 어렵거나 처음 따라가시는 분은 이 저장소를 쓰시면 됩니다.
-
-## 5분 체크리스트
-
-설치 후 아래가 동작하는지 확인:
-
-- [ ] 에이전트 CLI 또는 IDE 확장 실행 가능
-- [ ] 로그인·인증 완료
-- [ ] 임의의 폴더에서 "Hello, World" 수준의 간단한 요청 성공
-- [ ] **Claude Code**: `/init`으로 `CLAUDE.md` 자동 생성 / **AI Pro**: `/init`으로 `AGENTS.md` 자동 생성 / **Codex**: `AGENTS.md` 인식
-
 ## 준비되셨다면
 
-다음 → [1.4 AI 자동화의 역설](./04-ai-automation-paradox)
+다음 → [1.3 AI 자동화의 역설](./03-ai-automation-paradox)
