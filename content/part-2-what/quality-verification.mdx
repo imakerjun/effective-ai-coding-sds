@@ -2,6 +2,15 @@
 
 > "완료"를 코드로 강제하기
 
+## 📚 이 장의 근거
+
+- **Anthropic — [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)** — "완료 판단은 Evaluator 에이전트의 책임이며, Generator가 스스로 판단해서는 안 된다"는 원칙.
+- **Anthropic — [Claude Code best practices](https://www.anthropic.com/engineering/claude-code-best-practices)** — 테스트·린트·타입체크를 **hook으로 강제**해 모델이 우회할 수 없게 하는 패턴.
+- **HumanLayer — [Skill Issue: Harness Engineering for Coding Agents](https://www.humanlayer.dev/blog/skill-issue-harness-engineering-for-coding-agents)** — `PreToolUse`/`PostToolUse` hook으로 완료 기준을 코드에 박는 구체적 사례.
+- **OpenAI — [Harness Engineering (Codex)](https://openai.com/index/harness-engineering/)** — "Structured Execution" 축에서 검증·리플레이 가능성을 강조.
+
+공통 원리: **"완료"는 모델의 자기 판단이 아니라, 하네스가 기계적으로 검증할 수 있는 것이어야 한다.**
+
 ## "완료"라는 단어의 함정
 
 AI 에이전트가 "완료했습니다"라고 말할 때, 그 "완료"는 누구의 기준인가요?
@@ -111,7 +120,7 @@ AI Pro는 IDE 컨텍스트 메뉴에 품질 관련 액션이 **빌트인**으로
 
 > 본 챕터의 "TDD × 에이전트"를 AI Pro로 옮기면: **테스트 시나리오를 Pre-set Prompt에 박아두고 → Create Test로 실행 → diff에서 Append**. 3단계로 끝납니다.
 
-> 🛠️ **손으로 익히기**: [실습 트랙 · Step 4 — TDD × 에이전트](./hands-on/4-quality)에서 엣지 케이스를 먼저 정의하고 에이전트에게 TDD를 시키는 흐름을 직접 따라갑니다.
+> 🛠️ **손으로 익히기**: [실습 트랙 · Step 4 — TDD × 에이전트](./hands-on-4-quality)에서 엣지 케이스를 먼저 정의하고 에이전트에게 TDD를 시키는 흐름을 직접 따라갑니다.
 
 ---
 

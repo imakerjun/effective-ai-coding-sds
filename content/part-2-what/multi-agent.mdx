@@ -2,6 +2,17 @@
 
 > 역할을 나누는 힘
 
+## 📚 이 장의 근거
+
+이 장의 내용은 아래 1차 소스에 기반합니다. 본문의 원리·패턴은 이 문서들이 공통으로 말하는 것들을 정리한 것입니다.
+
+- **Anthropic — [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)** — 긴 작업 에이전트를 **Planner · Generator · Evaluator** 3역할로 분리하는 아키텍처. "역할 분리 = 컨텍스트 분리" 원리의 1차 출처.
+- **Anthropic — [How we built our multi-agent research system](https://www.anthropic.com/engineering/built-multi-agent-research-system)** — Lead-Researcher + 병렬 Sub-agent 위임 패턴. 단일 에이전트 대비 성능 향상의 정량 근거.
+- **HumanLayer — [Skill Issue: Harness Engineering for Coding Agents](https://www.humanlayer.dev/blog/skill-issue-harness-engineering-for-coding-agents)** — Sub-agent를 **context firewall** 로 쓰는 설계 원칙 ("부모는 요약본만 받는다").
+- **Anthropic — [Writing tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents)** — 에이전트 간 전달 인터페이스를 좁히는 베스트 프랙티스.
+
+세 문서가 공통으로 말하는 핵심은 하나입니다: **"긴 작업일수록 한 에이전트에 맡기면 안 된다."**
+
 ## 한 명에게 다 맡기면 생기는 일
 
 회사에서 한 사람에게 "기획·디자인·개발·QA·배포 다 해"라고 하면 어떻게 될까요? 답은 뻔합니다:
