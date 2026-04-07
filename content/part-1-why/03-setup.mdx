@@ -57,6 +57,35 @@ OpenAI의 CLI 에이전트. Claude Code와 유사한 경험을 제공합니다.
 
 > 이 강의의 각 챕터에는 **"AI Pro에서는?"** 콜아웃이 들어 있습니다. Claude Code 화면을 보시면서 동시에 AI Pro에서 어떻게 하는지 매핑을 확인하시면 됩니다.
 
+## 실습 저장소 (공식 안내) ⭐
+
+> 이 강의의 모든 미니 실습은 **하나의 실습 저장소**를 중심으로 진행됩니다.
+
+**저장소**: [imakerjun/agentic-coding-sample](https://github.com/imakerjun/agentic-coding-sample)
+
+```bash
+git clone https://github.com/imakerjun/agentic-coding-sample.git
+cd agentic-coding-sample
+```
+
+5가지 축에 1:1 매핑되는 5단계가 들어 있습니다:
+
+| Step | 축 | 디렉터리 |
+|---|---|---|
+| 1 | Context | [`steps/step-1-context/`](https://github.com/imakerjun/agentic-coding-sample/tree/main/steps/step-1-context) |
+| 2 | Plan | [`steps/step-2-plan/`](https://github.com/imakerjun/agentic-coding-sample/tree/main/steps/step-2-plan) |
+| 3 | Token | [`steps/step-3-token/`](https://github.com/imakerjun/agentic-coding-sample/tree/main/steps/step-3-token) |
+| 4 | Quality | [`steps/step-4-quality/`](https://github.com/imakerjun/agentic-coding-sample/tree/main/steps/step-4-quality) |
+| 5 | Multi-Agent | [`steps/step-5-multi-agent/`](https://github.com/imakerjun/agentic-coding-sample/tree/main/steps/step-5-multi-agent) |
+
+**왜 이 저장소를 쓰는가**:
+- 각 단계가 **독립 실행 가능** — 자기 자리에서 시작 가능
+- **외부 의존성 0** — Node 18+만 있으면 됨 (`node --test` 빌트인)
+- **start/ + solution/** 구조 — 막히면 비교용
+- `CLAUDE.md` + `AGENTS.md` 모두 포함 — Claude Code · AI Pro 모두 지원
+
+자기 프로젝트에서 실습이 어렵거나 처음 따라가시는 분은 이 저장소를 쓰시면 됩니다.
+
 ## 5분 체크리스트
 
 설치 후 아래가 동작하는지 확인:
