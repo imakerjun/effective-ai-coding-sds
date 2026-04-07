@@ -1,0 +1,33 @@
+# Step 5 · Sub-agent 위임 (3분)
+
+> **개념 복습이 필요하면**: [2.5 Multi-Agent Orchestration ←](../multi-agent)
+>
+> **실습 저장소**: [autoresearch-harness-steps/step-5-multi-agent](https://github.com/imakerjun/autoresearch-harness-steps/tree/master/harness-steps/step-5-multi-agent) — `train.py`의 hyperparameter 탐색을 서브에이전트로 위임 (context firewall 패턴).
+
+**과제**: 프로젝트에서 `TODO` 주석을 모두 찾아 우선순위별로 분류하기.
+
+## 나쁜 방식 (단일 에이전트)
+
+"프로젝트에서 TODO 찾고 우선순위 매기고 정리해줘"
+→ 수백 개 파일을 Main이 직접 읽음 → 윈도우 고갈 → 작업 중단
+
+## 좋은 방식 (Main + 서브)
+
+Main에게:
+> "서브에이전트로 코드베이스에서 TODO 주석을 모두 찾고, 파일 경로와 내용만 리스트로 돌려받아. 그 다음 네가 우선순위를 매겨."
+
+Main → Sub(탐색) → 요약된 리스트 → Main(판단) → 결과
+
+두 방식을 실제로 돌려보면, Main의 컨텍스트 사용량이 크게 다릅니다.
+
+## 관찰 포인트
+
+- 두 방식 끝난 직후 Main의 컨텍스트 사용률(%)을 비교
+- Sub가 돌려준 리스트의 **요약 품질** — 너무 짧으면 Main이 다시 묻고, 너무 길면 firewall 의미가 없어짐. 그 균형점이 어디인지 감을 잡기
+- Main이 "그 파일 다시 보여줘"라고 묻는 순간이 생기면, 그게 firewall이 새고 있다는 신호
+
+---
+
+🎉 5개 step 완료. 이제 **Context → Plan → Token → Quality → Multi-Agent**가 한 줄로 꿰어진 워크플로가 손에 익었습니다. 같은 5단계를 본인 팀의 실제 레포에 한 번 더 적용해보면 강의가 진짜 자기 것이 됩니다.
+
+[← Step 4](./4-quality) · [실습 트랙 홈으로](./)

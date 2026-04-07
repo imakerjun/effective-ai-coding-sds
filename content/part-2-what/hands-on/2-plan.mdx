@@ -1,0 +1,29 @@
+# Step 2 · Plan Mode 비교 (3분)
+
+> **개념 복습이 필요하면**: [2.2 Plan-based Execution ←](../plan-based-execution)
+>
+> **실습 저장소**: [autoresearch-harness-steps/step-2-plan](https://github.com/imakerjun/autoresearch-harness-steps/tree/master/harness-steps/step-2-plan) — `train.py`에 dropout 추가를 Plan ON/OFF로 비교합니다.
+
+같은 요구사항을 두 번 시도해봅니다.
+
+**요구사항**: "사용자 목록 페이지에 검색 기능 추가" (또는 실습 저장소에서는 "`train.py`에 dropout 추가")
+
+1. **첫 번째**: Plan Mode 없이 바로 실행
+2. **두 번째**: Plan Mode로 계획 먼저 받고 → 검토 → 승인 → 실행
+
+두 결과를 비교해보세요. 대부분 두 번째가:
+- 더 적은 수정
+- 기존 코드와 더 잘 맞음
+- 예상 못 한 파일 변경 없음
+
+## 관찰 포인트
+
+- 첫 번째 실행에서 AI가 만진 파일 개수 vs 두 번째에서 만진 파일 개수
+- "어, 이거 왜 건드렸지?" 라는 순간이 두 번째에서는 줄어드는가
+- Plan을 보고 **승인 전에 수정**한 항목이 있었는가 — 있었다면 그게 바로 절약된 시간
+
+---
+
+✅ Step 2 완료. 그런데 매번 Plan을 받아도, 큰 파일들이 컨텍스트를 잡아먹으면 의미가 없습니다. 다음 step에서 그걸 막습니다.
+
+[← Step 1](./1-context) · [Step 3 · .aiproignore 효과 →](./3-token)

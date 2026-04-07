@@ -1,0 +1,64 @@
+# Step 1 · CLAUDE.md 만들기 (5분)
+
+> **개념 복습이 필요하면**: [2.1 Context Engineering ←](../context-engineering)
+>
+> **실습 저장소**: [autoresearch-harness-steps/step-1-context](https://github.com/imakerjun/autoresearch-harness-steps/tree/master/harness-steps/step-1-context) — Karpathy의 `program.md`를 분석하고 자기 CLAUDE.md / AGENTS.md를 만들어보는 실습입니다.
+
+지금 작업 중인 프로젝트(또는 위 실습 저장소)에 컨텍스트 파일을 5분 안에 만듭니다.
+
+## Step 1 — `/init` 으로 초안 받기
+
+| 도구 | 명령 |
+|---|---|
+| Claude Code | `/init` → `CLAUDE.md` 자동 생성 |
+| AI Pro CLI | `/init` → `AGENTS.md` 자동 생성 |
+
+## Step 2 — 핵심 5섹션만 남기기
+
+자동 생성된 초안에서 아래 5섹션만 남기고 나머지는 나중에 채워도 됩니다:
+
+```markdown
+# [프로젝트명]
+
+## 이 레포가 뭔지 (1~2줄)
+
+## 디렉터리 구조 (주요 폴더만)
+
+## 코딩 컨벤션 (지금 당장 지켜야 할 것 5개)
+
+## AI가 자주 헤매는 것 3가지 ⭐ 가장 가치 있는 섹션
+- 지난주 AI가 틀렸던 것 1:
+- 지난주 AI가 틀렸던 것 2:
+- 지난주 AI가 틀렸던 것 3:
+
+## 건드리면 안 되는 것
+```
+
+## Step 3 — Before/After 검증
+
+같은 요구사항을 두 번 시도:
+
+1. CLAUDE.md/AGENTS.md **없이** 새 세션 → 결과 저장
+2. CLAUDE.md/AGENTS.md **있는 상태**에서 새 세션 → 결과 비교
+
+비교 포인트:
+- 컨벤션 위반이 줄었는가?
+- "이건 어떻게 해요?" 같은 되묻기가 줄었는가?
+- 결과 코드를 그대로 받아들일 수 있는가?
+
+이 한 번의 비교가 **가장 강력한 학습 경험**입니다.
+
+## Step 4 — 관찰 모드로 1주일
+
+만든 다음 1주일간:
+- AI가 또 헤매는 순간 즉시 그 규칙을 CLAUDE.md/AGENTS.md에 추가
+- 매일 1~2줄씩만 자라도 충분
+- 1주일 뒤 확인하면 처음과 다른 문서가 됨
+
+이게 **"살아 있는 컨텍스트"** 의 시작입니다. (자세한 작성 템플릿은 [부록 G](../../appendix/G-claude-md-template))
+
+---
+
+✅ Step 1 완료. 다음은 이 컨텍스트 위에서 **계획부터 받는 습관**을 익힙니다.
+
+[← 실습 트랙 홈](./) · [Step 2 · Plan Mode 비교 →](./2-plan)

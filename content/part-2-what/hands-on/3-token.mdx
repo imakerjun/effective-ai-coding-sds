@@ -1,0 +1,42 @@
+# Step 3 · .aiproignore 효과 (3분)
+
+> **개념 복습이 필요하면**: [2.3 Token & Context Optimization ←](../token-optimization)
+>
+> **실습 저장소**: [autoresearch-harness-steps/step-3-token](https://github.com/imakerjun/autoresearch-harness-steps/tree/master/harness-steps/step-3-token) — 443KB `uv.lock`, 253KB `progress.png`, 노트북 등 큰 파일이 실제로 있어 `.aiproignore` 효과를 즉시 체감할 수 있습니다.
+
+긴 작업을 끊어가며 진행하는 감을 익혀봅니다.
+
+## 과제
+
+"이 프로젝트의 에러 처리 패턴을 전부 찾아서 문서화"
+
+## 나쁜 방식
+
+Main에게 바로 시킴 → 수십 개 파일을 한 세션에 로드 → 토큰 고갈 → 중간에 "이 파일 다시 읽어볼게요" 루프
+
+## 좋은 방식 (격리 + 분할)
+
+1. Main: "서브에이전트로 `try/catch` 쓰는 파일 리스트만 받아와"
+2. Sub → 파일 경로 리스트만 반환 (요약)
+3. Main: "이 리스트를 5개씩 묶어서 각 그룹별로 패턴 추출해"
+4. 각 그룹마다 독립 서브에이전트
+5. Main은 그룹별 요약만 받아 최종 문서 작성
+
+**Main의 컨텍스트 사용량 비교**: 방식 1은 80%+, 방식 2는 20% 이하로 끝납니다.
+
+## 추가 실험: `.aiproignore` 한 줄의 위력
+
+실습 저장소에서는 `uv.lock`(443KB)과 `progress.png`(253KB) 같은 파일이 별 이유 없이 매 세션에 로드됩니다. `.aiproignore`(또는 `.claudeignore`)에 두 줄만 추가하고 다시 같은 작업을 시켜보세요.
+
+```
+uv.lock
+*.png
+```
+
+같은 작업의 토큰 사용량이 눈에 띄게 줄어듭니다. **"가장 싸게 얻는 절약"이 무엇인지** 체감하는 게 이 step의 목적입니다.
+
+---
+
+✅ Step 3 완료. 이제 컨텍스트는 깨끗합니다. 다음 step에서는 "완료"라는 단어를 코드로 박는 법을 익힙니다.
+
+[← Step 2](./2-plan) · [Step 4 · TDD × 에이전트 →](./4-quality)
