@@ -24,22 +24,45 @@ OpenAI의 CLI 에이전트. Claude Code와 유사한 경험을 제공합니다.
 
 > TODO: 최신 설치 가이드 링크 추가
 
-### 옵션 3: AI Pro (삼성SDS 사내)
+### 옵션 3: AI Pro (삼성SDS 사내) ⭐
 
-SDS 내부 환경에서 제공되는 AI 개발 도구입니다. 강의 수강생 중 SDS 소속이라면 이 옵션이 기본입니다.
+삼성SDS 내부 환경에서 제공되는 AI 개발 도구입니다. **이 강의의 SDS 수강생에게는 기본 도구**입니다. 강의 데모는 Claude Code 화면이지만, **AI Pro에서도 동일한 원칙·기능을 그대로 적용할 수 있도록** 각 챕터에 매핑을 제공합니다.
 
-**특이사항**:
-- 실습 내용 중 일부는 AI Pro에 최적화된 형태로 제공됩니다 (SDS에서 별도 제공)
-- 원칙은 동일하지만 UI·커맨드가 다를 수 있습니다
+**구성 요소** (PDF 가이드 기준)
+
+| 구성 | 설명 |
+|---|---|
+| **AI Pro IDE 확장** | JetBrains / VSCode / Eclipse 플러그인 — Chat·Agent·Tools·Editor 통합 |
+| **AI Pro CLI** | 터미널 도구 (gemini-cli 기반) |
+| **Rules** | 행동 지침 (Cursor Rules와 동일 개념) — Personal/Project |
+| **Skills** | 작업별 지침 (Claude의 Skills와 동일 개념) — `/skill-name` 호출 또는 자동 판단 |
+| **Pre-set Prompt** | 자주 쓰는 프롬프트 5개까지 저장 |
+
+**핵심 위치**
+
+| 항목 | 경로 |
+|---|---|
+| Personal Rules | `~/.aipro/rules/*.md` |
+| Project Rules | `.aipro/rules/*.md` |
+| Personal Skills | `~/.aipro/skills/<skill-name>/SKILL.md` |
+| Project Skills | `.aipro/skills/<skill-name>/SKILL.md` |
+| CLI 설정 | `~/.gemini/settings.json` |
+| Ignore | `.aiproignore`, `.geminiignore` |
+
+**모델 선택**: Qwen3-Coder-128K, GPT-OSS-128K, GLM-4.7-128K 등 (Chat/Agent 우측 상단 드롭다운)
+
+**제한**: Rules는 Project + Personal 합쳐 최대 **10,000자**까지 LLM에 전달됩니다. 초과분은 잘립니다 — Part 3.1의 "100줄 넘기지 마세요" 권고가 AI Pro에서는 사실상 강제입니다.
+
+> 이 강의의 각 챕터에는 **"AI Pro에서는?"** 콜아웃이 들어 있습니다. Claude Code 화면을 보시면서 동시에 AI Pro에서 어떻게 하는지 매핑을 확인하시면 됩니다.
 
 ## 5분 체크리스트
 
 설치 후 아래가 동작하는지 확인:
 
-- [ ] 터미널에서 에이전트 CLI 실행 가능
+- [ ] 에이전트 CLI 또는 IDE 확장 실행 가능
 - [ ] 로그인·인증 완료
 - [ ] 임의의 폴더에서 "Hello, World" 수준의 간단한 요청 성공
-- [ ] `CLAUDE.md` 또는 `AGENTS.md` 파일을 만들면 에이전트가 읽는지 확인
+- [ ] **Claude Code**: `CLAUDE.md` 파일 인식 / **AI Pro**: `.aipro/rules/test.md` 인식 / **Codex**: `AGENTS.md` 인식
 
 ## 실습용 샘플 프로젝트
 
@@ -47,18 +70,23 @@ SDS 내부 환경에서 제공되는 AI 개발 도구입니다. 강의 수강생
 
 > TODO: 샘플 프로젝트 레포 준비 (작은 TypeScript 또는 Kotlin 프로젝트)
 
-## 이 강의에서 쓰는 도구들
+## 이 강의에서 쓰는 도구들 (Claude Code ↔ AI Pro 매핑)
 
-각 챕터에서 등장하는 도구·개념:
+각 챕터에서 등장하는 개념과 두 도구의 매핑입니다.
 
-| 도구/개념 | 어디서 | 부록 |
-|---|---|---|
-| CLAUDE.md / AGENTS.md | Part 2.1 | A |
-| Plan Mode | Part 2.2 | - |
-| 서브에이전트 | Part 2.3, 2.5 | - |
-| Hook | Part 2.4 | - |
-| MCP | Part 2.1 (우아한형제들 사례) | B |
-| Autoresearch | - | F |
+| 개념 | Claude Code | AI Pro | 어디서 |
+|---|---|---|---|
+| **컨텍스트 파일** | `CLAUDE.md` | `.aipro/rules/*.md` (+ `AGENTS.md`) | Part 2.1 |
+| **Plan / 사전 합의** | Plan Mode | Chat ↔ Agent 모드 + Pre-set Prompt | Part 2.2 |
+| **컨텍스트 압축** | `/compact` | Chat History 압축 | Part 2.3 |
+| **파일 제외** | `.gitignore` 등 | `.aiproignore` / `.geminiignore` | Part 2.3 |
+| **워크스페이스 인덱싱** | (자동) | Workspace Indexing 토글 | Part 2.3 |
+| **테스트 먼저** | TDD 프롬프트 | Editor → Create Test 컨텍스트 메뉴 | Part 2.4 |
+| **코드 리뷰 / 설명** | 리뷰 에이전트 | Editor → Code Explanation, Create Comment | Part 2.4 |
+| **커밋 메시지 자동 작성** | Hook + 프롬프트 | Source Control → AI Pro 아이콘 | Part 2.4 |
+| **역할 분리 / 전문화** | 서브에이전트 + Task | **Skills** (`/skill-name` + 자동 판단) | Part 2.5 |
+| **외부 도구 연결** | MCP | Settings → (Beta) MCP | Part 2.1, 2.5, 부록 B |
+| **메타 도구** | Skill 작성 | **skill-creator** 빌트인 메타스킬 | 부록 F |
 
 ## 자주 막히는 지점
 
@@ -71,6 +99,12 @@ SDS 내부 환경에서 제공되는 AI 개발 도구입니다. 강의 수강생
 
 - 에이전트를 **CLAUDE.md가 있는 폴더에서 실행**했는지 확인
 - 하위 폴더에서 실행하면 상위의 CLAUDE.md를 못 볼 수 있음
+
+### AI Pro: "Rules가 안 먹는 것 같아요"
+
+- **경로 확인**: Project Rules는 정확히 `.aipro/rules/*.md` 위치여야 합니다
+- **10,000자 제한**: Project Rules → Personal Rules 순으로 로드되며 합산 10,000자 초과분은 잘립니다. 가장 중요한 규칙을 Project Rules 앞쪽에 두세요
+- **CLI 한글 깨짐**: 터미널 인코딩 설정 확인 (PDF 가이드 명시)
 
 ### "에이전트가 파일을 못 찾는다고 해요"
 

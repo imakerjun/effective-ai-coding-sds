@@ -87,6 +87,30 @@ flowchart LR
 
 Part 2.5에서 본 패턴 1(Plan/Impl/Review 분리)이 여기서 다시 등장합니다. **멀티 에이전트는 결국 품질 검증의 한 형태**입니다.
 
+## 🤖 AI Pro에서는?
+
+AI Pro는 IDE 컨텍스트 메뉴에 품질 관련 액션이 **빌트인**으로 들어 있어 가장 쉽게 시작할 수 있는 영역입니다.
+
+**Editor 컨텍스트 메뉴** (코드 드래그 → 마우스 우클릭 → AI Pro)
+
+| 액션 | 용도 |
+|---|---|
+| **Create Test** | 선택 코드의 테스트 시나리오·코드 자동 생성 |
+| **Code Explanation** | 선택 코드 동작 설명 (리뷰 보조) |
+| **Create Comment** | JavaDoc·docstring 자동 생성 |
+| **Code Generation** | 자연어 설명으로 코드 생성 |
+| **Code Refactoring** | 선택 코드 리팩터링 + Side-by-side diff (Replace/Append) |
+
+**커밋 메시지 자동 생성** — 세 IDE 모두 지원
+
+| IDE | 위치 |
+|---|---|
+| JetBrains | Commit 창 → AI Pro 아이콘 |
+| VSCode | Source Control → AI Pro 아이콘 |
+| Eclipse | Team → Commit → AI Pro 버튼 |
+
+> 본 챕터의 "TDD × 에이전트"를 AI Pro로 옮기면: **테스트 시나리오를 Pre-set Prompt에 박아두고 → Create Test로 실행 → diff에서 Append**. 3단계로 끝납니다.
+
 ## 🛠️ 미니 실습 (3분)
 
 ### 과제

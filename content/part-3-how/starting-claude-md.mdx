@@ -138,6 +138,23 @@
 - **100줄 넘게 키우지 말 것** — 길어지면 부록 문서로 분리
 - **한 번 만들고 잊지 말 것** — 안 자라는 CLAUDE.md는 죽은 문서
 
+## 🤖 AI Pro에서는?
+
+같은 챕터를 AI Pro에서 진행할 때:
+
+| 단계 | Claude Code | AI Pro |
+|---|---|---|
+| 1. 빈 파일 만들기 | `touch CLAUDE.md` | `mkdir -p .aipro/rules && touch .aipro/rules/main.md` |
+| 2. 20분 템플릿 채우기 | (위 템플릿 그대로) | (위 템플릿 그대로) |
+| 3. 인식 테스트 | `claude` 실행 후 "이 프로젝트 컨벤션 알고 있어?" | AI Pro Chat에서 동일하게 질문 |
+| 4. 추가 자동화 | — | CLI에서 **`/init`** 으로 `AGENTS.md` 자동 생성 (Project Overview, Building, Testing 등 골격 자동 작성) |
+
+**AI Pro 전용 팁**:
+
+- **Project Rules 우선**: Personal Rules보다 Project Rules가 먼저 로드됩니다. 가장 중요한 규칙은 Project에 두세요.
+- **10,000자 안에 최대한**: 합산 10,000자 초과분은 잘립니다. 컨벤션이 길어지면 별도 docs로 빼고 Rules에는 링크만.
+- **CLI + IDE 동시 사용**: 같은 `.aipro/rules/` 가 IDE 확장과 CLI 양쪽에 동일하게 적용됩니다.
+
 ## 한 단계 더: 팀 자산 중앙화
 
 개인·프로젝트 CLAUDE.md가 자리 잡으면, 다음은 **팀 공통 자산 중앙화**입니다.

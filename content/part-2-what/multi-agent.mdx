@@ -73,6 +73,62 @@ flowchart LR
 
 이건 조금 색다른 패턴입니다. 아래 사례에서 자세히 보겠습니다.
 
+## 🤖 AI Pro에서는?
+
+AI Pro의 **Skills**가 멀티 에이전트 패턴의 핵심 도구입니다 — PDF 가이드에 *"Claude의 skills와 동일한 개념"* 이라고 명시되어 있습니다.
+
+### Skills의 두 가지 호출 방식
+
+1. **직접 호출** — `/skill-name` 으로 명시적 트리거. 어떤 Skill을 쓸지 이미 알 때.
+2. **자동 판단** — 자연어 요청만 해도 description을 보고 자동 트리거. **description이 명확할수록 정확도 ↑**.
+
+### Skill 폴더 구조
+
+```
+my-skill/
+├── SKILL.md      (필수 — frontmatter + 본문)
+├── reference.md  (참조 문서, 필요 시 로드)
+├── examples.md   (예시, 필요 시 로드)
+└── scripts/
+    └── helper.py (실행 스크립트)
+```
+
+| 위치 | 경로 | 적용 대상 |
+|---|---|---|
+| Personal | `~/.aipro/skills/<skill-name>/SKILL.md` | 모든 프로젝트 |
+| Project | `.aipro/skills/<skill-name>/SKILL.md` | 이 프로젝트만 |
+
+### Frontmatter 4가지 필드
+
+```yaml
+---
+name: skill-name              # 소문자/숫자/하이픈, 64자 이내
+description: 언제·왜 사용하는지  # AI Pro 자동 트리거 판단의 기준 (1024자 이내)
+disable-model-invocation: false  # true면 자동 호출 차단, /name 수동만
+user-invocable: true            # false면 / 메뉴에서 숨김
+---
+```
+
+### 멀티 에이전트 패턴을 Skills로 운영하기
+
+| 강의의 패턴 | Skills 운영 |
+|---|---|
+| **Plan / Implement / Review 분리** | `plan-only`, `implement-only`, `review-only` 3개 Skill 작성, 단계별 직접 호출 |
+| **Main + 서브에이전트 (탐색·검증·요약)** | `code-search`, `log-summary` 등을 Skill로 만들고 자동 트리거에 맡김 |
+| **에센스 + 변형** | 공통 가이드는 Project Rules, 변형 작업은 각 Skill |
+
+### skill-creator — 메타스킬
+
+AI Pro는 **`skill-creator`** 빌트인 메타스킬을 제공합니다. Skill을 만드는 Skill입니다.
+
+수행 가능한 작업:
+- 새 Skill 생성·기존 Skill 개선
+- 테스트 케이스 자동 생성·실행 (with-skill / baseline 비교)
+- 정성(브라우저 뷰어) + 정량(assertion 벤치마크) 평가
+- description 최적화 (트리거 정확도 향상)
+
+> 이게 사실 **부록 F의 Autoresearch 패턴이 빌트인으로 들어 있는 것**과 같습니다. AI Pro 사용자는 별도 도구 없이 즉시 활용 가능합니다.
+
 ## 🛠️ 미니 실습 (3분)
 
 **과제**: 프로젝트에서 `TODO` 주석을 모두 찾아 우선순위별로 분류하기.

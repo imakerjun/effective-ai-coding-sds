@@ -4,18 +4,24 @@
 
 ## 한눈에 비교
 
-| 항목 | Claude Code | Codex (OpenAI) | AI Pro (SDS) |
+| 항목 | Claude Code | Codex (OpenAI) | **AI Pro (삼성SDS)** |
 |---|---|---|---|
 | **제공사** | Anthropic | OpenAI | 삼성SDS 사내 |
-| **인터페이스** | CLI 중심 | CLI 중심 | 사내 환경 |
-| **컨텍스트 파일** | `CLAUDE.md` | `AGENTS.md` | (사내 가이드) |
-| **Plan Mode** | ✅ (네이티브) | 부분적 | 사내 가이드 |
-| **서브에이전트** | ✅ (네이티브) | 부분적 | 사내 가이드 |
-| **Hook** | ✅ | - | - |
-| **MCP 지원** | ✅ | 부분적 | - |
-| **권한 모델** | 폴더 단위 명시 | 유사 | 사내 정책 |
+| **기반 기술** | (자체) | (자체) | gemini-cli + Cursor 개념 + Claude Skills 개념 |
+| **인터페이스** | CLI 중심 | CLI 중심 | **IDE 확장 (JetBrains/VSC/Eclipse) + CLI** |
+| **컨텍스트 파일** | `CLAUDE.md` | `AGENTS.md` | **Rules** (`.aipro/rules/*.md`) + `AGENTS.md` |
+| **컨텍스트 제한** | 사실상 무제한 | 사실상 무제한 | **Rules 합산 10,000자** (초과분 잘림) |
+| **Plan / 사전 합의** | Plan Mode | 부분적 | **Chat ↔ Agent 모드 + Pre-set Prompt 5개** |
+| **작업별 지침 (Skills)** | Subagents | (제한적) | **Skills** (`/skill-name` + 자동 판단) |
+| **메타 스킬** | Skill 작성 | - | **skill-creator 빌트인** |
+| **Hook / 자동화** | ✅ | 제한적 | Editor 컨텍스트 메뉴 (Code Generation/Refactoring/Comment/Test/Explanation) |
+| **커밋 메시지 자동** | 프롬프트 | 프롬프트 | **Source Control 통합 (3 IDE 모두)** |
+| **MCP 지원** | ✅ (네이티브) | 부분적 | **(Beta) MCP** |
+| **컨텍스트 격리** | 서브에이전트 | 부분적 | Skills 직접 호출 / Workspace Indexing |
+| **Ignore** | `.gitignore` | `.gitignore` | `.aiproignore`, `.geminiignore` |
+| **모델 선택** | Claude family | OpenAI family | **Qwen3-Coder-128K, GPT-OSS-128K, GLM-4.7-128K** 등 |
 
-> ⚠️ 이 표는 2026년 4월 기준입니다. 도구 발전 속도가 빠르므로 각 공식 문서로 검증하세요.
+> ⚠️ 이 표는 2026년 4월 기준입니다. 도구 발전 속도가 빠르므로 각 공식 문서로 검증하세요. AI Pro 정보는 SDS 사내 PDF 가이드(Rules / Skills / CLI / Chat / Editor) 기준입니다.
 
 ## 어떤 걸 골라야 할까
 
@@ -31,23 +37,33 @@
 - 이미 OpenAI 생태계 (ChatGPT Pro/Team) 사용 중
 - AGENTS.md 컨벤션을 다른 도구와 공유하고 싶음
 
-### AI Pro를 써야 하는 경우
+### AI Pro를 써야 하는 경우 ⭐
 
 - 삼성SDS 사내 정책상 외부 도구 사용 제한
-- 사내 인프라/데이터 접근이 필요한 작업
-- → AI Pro에 대한 구체 가이드는 SDS에서 별도 제공
+- 사내 인프라·데이터 접근이 필요한 작업
+- **JetBrains/VSCode/Eclipse 셋 중 어디서든 동일 경험**을 원하는 경우 (PDF 가이드에 세 IDE 모두 명시)
+
+**AI Pro만의 장점**:
+- IDE에 깊게 통합된 컨텍스트 메뉴 (Code Generation / Refactoring / Comment / Test / Explanation)
+- 한 번에 여러 모델 선택 가능 (Qwen3-Coder, GPT-OSS, GLM-4.7 등)
+- Skill 자체를 만들어주는 메타스킬 `skill-creator` 빌트인
+
+**AI Pro만의 제약**:
+- Rules 합산 10,000자 제한 (Claude Code는 사실상 무제한)
+- MCP는 아직 Beta
+- 외부 패키지 자유도는 Claude Code/Codex보다 좁을 수 있음
 
 ## 도구가 달라도 원칙은 같다
 
 이 강의의 핵심 메시지입니다.
 
-| 원칙 | Claude Code | Codex | AI Pro |
+| 원칙 | Claude Code | Codex | **AI Pro** |
 |---|---|---|---|
-| Context | CLAUDE.md | AGENTS.md | (사내 가이드 파일) |
-| Plan | Plan Mode | "계획 먼저 말해줘" 프롬프트 | 사내 가이드 |
-| Token | `/compact` + 서브에이전트 | 세션 분할 | 사내 가이드 |
-| Quality | Hook + Test | Test + 사람 리뷰 | 사내 검증 도구 |
-| Multi-Agent | 서브에이전트 + Task | 세션 분리 | 사내 가이드 |
+| Context | `CLAUDE.md` | `AGENTS.md` | **Rules** (`.aipro/rules/*.md`) + `AGENTS.md` |
+| Plan | Plan Mode | "계획 먼저" 프롬프트 | **Chat ↔ Agent 모드 + Pre-set Prompt** |
+| Token | `/compact` + 서브에이전트 | 세션 분할 | **Chat History 압축 + `.aiproignore` + Workspace Indexing** |
+| Quality | Hook + Test | Test + 사람 리뷰 | **Editor → Create Test / Code Explanation / Commit Message** |
+| Multi-Agent | 서브에이전트 + Task | 세션 분리 | **Skills** (`/skill-name` + 자동 트리거) + skill-creator |
 
 **원칙은 5개, 구현은 도구마다 다름.** 원칙을 알면 어떤 도구로 옮겨도 적응이 빠릅니다.
 

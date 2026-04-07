@@ -57,6 +57,28 @@ flowchart LR
 
 이게 Part 2.5(멀티 에이전트)와 맞닿는 지점입니다. **토큰 절약의 가장 효과적인 방법은 에이전트 분리입니다.**
 
+## 🤖 AI Pro에서는?
+
+| 전략 | Claude Code | AI Pro |
+|---|---|---|
+| **압축** | `/compact` | **Chat History 압축** (CLI 기본 기능, gemini-cli 기반) |
+| **분할** | 새 세션 + 산출물 전달 | 새 Chat 시작 (히스토리 아이콘 → New Chat) + Pre-set Prompt로 컨텍스트 재진입 |
+| **격리** | 서브에이전트 (Task) | **Skills 직접 호출** (`/skill-name`) — 작업을 좁힌 Skill로 위임하면 자연스러운 격리 |
+| **불필요 파일 차단** | `.gitignore` | **`.aiproignore`** + **`.geminiignore`** (둘 다 지원) |
+| **인덱싱 통제** | (자동) | Settings → **Workspace Indexing** 토글 + re-index 버튼 |
+
+특히 **`.aiproignore`** 는 토큰 절약의 가장 빠른 첫걸음입니다. PDF 가이드 예시:
+
+```gitignore
+node_modules
+*.sql
+secrets.json
+.env
+*.log
+```
+
+`{USER_HOME}/.aipro/.aiproignore` 위치에 두면 모든 프로젝트에 적용됩니다.
+
 ## 🛠️ 미니 실습 (3분)
 
 긴 작업을 끊어가며 진행하는 감을 익혀봅니다.
