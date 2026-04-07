@@ -35,6 +35,45 @@
 - 구현 후 모든 테스트가 한 번에 통과했는가, 아니면 1~2번 더 고쳤는가
 - 여러분이 추가하지 않은 케이스가 프로덕션에서 터졌다면, 그 케이스를 다음 번 프롬프트의 기본 체크리스트에 넣기
 
+## 실무에 어떻게 가져갈까
+
+이 실습은 손으로 케이스를 정해보는 게 핵심이지만, 실무에서 매번 4개씩 손으로 적기는 어렵습니다. 대신 **재사용 가능한 TDD 지시문**을 한 번 만들어 두고 에이전트에 항상 주입하는 방식이 잘 먹힙니다.
+
+### 재사용 가능한 TDD 스킬/프롬프트 (복붙용)
+
+`CLAUDE.md` · `AGENTS.md` · AI Pro Skill 어디에 넣어도 동작합니다.
+
+```markdown
+## TDD 워크플로 (모든 함수/버그픽스에 적용)
+
+1. **테스트 먼저, 한 번에 하나씩.** 구현 코드를 한 줄도 쓰지 말 것.
+2. 다음 5가지 카테고리를 매번 검토하고, 해당되는 것만 테스트로 작성:
+   - happy path (전형적 입력)
+   - 빈 값 / null / 빈 컬렉션
+   - 경계값 (0, 1, max, off-by-one)
+   - 잘못된 타입 / 형식
+   - 동시성·순서 (해당되면)
+3. 테스트 실행해서 **전부 RED 인 것을 출력으로 증명**할 것.
+4. 그다음 구현. 한 번에 한 테스트만 GREEN으로 만들 것.
+5. 모든 테스트가 GREEN이 되면 리팩터링. 리팩터링 후에도 테스트 재실행.
+6. 내가 명시하지 않은 mock·skip·xfail 금지. 막히면 멈추고 물어볼 것.
+```
+
+이걸 한 번 박아두면, 매 요청마다 "테스트 먼저 짜줘"를 반복하지 않아도 됩니다.
+
+### 신뢰할 만한 출처
+
+- **Anthropic · Claude Code Best Practices** — "Write tests, commit; code, iterate, commit" 워크플로를 에이전틱 코딩의 권장 패턴으로 명시. https://www.anthropic.com/engineering/claude-code-best-practices
+- **Kent Beck · "Augmented Coding: Beyond the Vibes"** — TDD 창시자가 AI 에이전트와 TDD를 결합한 실전기. 빨강→초록→리팩터 사이클을 사람이 *지휘자* 로 유지하는 법. https://tidyfirst.substack.com/p/augmented-coding-beyond-the-vibes
+- **Martin Fowler · "Expanding the Test Pyramid with AI"** — 에이전트가 만든 테스트의 신뢰성을 어떻게 검증할지에 대한 균형 잡힌 시각. https://martinfowler.com/articles/exploring-gen-ai.html
+
+### 실무 체크리스트
+
+- [ ] `CLAUDE.md` / `AGENTS.md`에 위 TDD 워크플로 블록이 들어 있는가
+- [ ] 에이전트가 RED 출력을 *보여주지 않고* 구현으로 넘어가면 즉시 중단시키는가
+- [ ] 프로덕션에서 터진 버그는 **그 버그를 재현하는 테스트부터** 에이전트에 시키는가 (regression-first)
+- [ ] mock 사용 시 "왜 mock인지" 코멘트를 강제하는 규칙이 있는가
+
 ---
 
 ✅ Step 4 완료. 마지막은 가장 강력한 패턴 — Main의 컨텍스트를 보호하는 sub-agent 위임입니다.
