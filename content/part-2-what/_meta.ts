@@ -5,4 +5,9 @@ export default {
   'token-optimization': '2.3 Token & Context Optimization',
   'quality-verification': '2.4 Quality Verification',
   'multi-agent': '2.5 Multi-Agent Orchestration',
+  '-- hands-on': {
+    type: 'separator',
+    title: '🛠️ 실습 트랙',
+  },
+  'hands-on': '실습 1→5 따라가기',
 }
